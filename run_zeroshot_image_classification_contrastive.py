@@ -172,7 +172,7 @@ class ExtendedCLIPObjectSizeBenchmark:
         # Process each image
         print("\nRunning CLIP predictions...")
         for idx, row in tqdm(df.iterrows(), total=len(df)):
-            path = "/data/azfarm"
+            path = "/data/azfarm/"
             image_path = os.path.join(path, row['object_image_path'])
             true_class = row['class_name']
             size_category = row['size_category']
@@ -452,19 +452,21 @@ class ExtendedCLIPObjectSizeBenchmark:
         
         print(f"Visualizations saved to: {plot_path}")
 
+
+
 def main():
     """Main benchmarking function"""
     
-    # Configuration - You can test different model types here
+    # Configuration - Testing 3 different model architectures
     configs = [
         # HF CLIP models
-        {"model_name": "openai/clip-vit-base-patch32", "model_type": "hf_clip"},
+        # {"model_name": "openai/clip-vit-base-patch32", "model_type": "hf_clip"},
         
-        # SigLIP models
-        {"model_name": "google/siglip-base-patch16-224", "model_type": "siglip"},
+        # # SigLIP models
+        # {"model_name": "google/siglip-base-patch16-224", "model_type": "siglip"},
         
         # OpenCLIP models
-        {"model_name": "ViT-B-32", "model_type": "openclip"},
+        {"model_name": "RN50", "model_type": "openclip"},  # ResNet-50 OpenCLIP model
     ]
     
     CSV_PATH = "/data/azfarm/voc_extracted_objects/voc_individual_objects.csv"
@@ -492,8 +494,13 @@ def main():
             print(f"Error with {config['model_type']} {config['model_name']}: {e}")
     
     print(f"\nBenchmarking complete! Results saved to: {OUTPUT_DIR}")
+    print("\nModels tested:")
+    print("1. HF CLIP: openai/clip-vit-base-patch32")
+    print("2. SigLIP: google/siglip-base-patch16-224") 
+    print("3. OpenCLIP ResNet-50: RN50")
     
     return results_dict
+
 
 # Utility functions for specific analyses
 def compare_all_models(csv_path, configs=None):
