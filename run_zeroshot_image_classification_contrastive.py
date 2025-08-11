@@ -459,11 +459,11 @@ def main():
     
     # Configuration - Testing 3 different model architectures
     configs = [
-        # HF CLIP models
-        # {"model_name": "openai/clip-vit-base-patch32", "model_type": "hf_clip"},
+        HF CLIP models
+        {"model_name": "openai/clip-vit-base-patch32", "model_type": "hf_clip"},
         
-        # # SigLIP models
-        # {"model_name": "google/siglip-base-patch16-224", "model_type": "siglip"},
+        # SigLIP models
+        {"model_name": "google/siglip-base-patch16-224", "model_type": "siglip"},
         
         # OpenCLIP models
         {"model_name": "RN50", "model_type": "openclip"},  # ResNet-50 OpenCLIP model
